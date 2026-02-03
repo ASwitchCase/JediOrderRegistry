@@ -3,10 +3,10 @@ using JediOrderRegistry.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register in-memory repositories
-builder.Services.AddSingleton<IHomeworldRepository, InMemoryHomeworldRepository>();
-builder.Services.AddSingleton<IJediRepository, InMemoryJediRepository>();
-builder.Services.AddSingleton<ILightSaberRepository, InMemoryLightSaberRepository>();
+// Register in-memory repositories (seeded for runtime)
+builder.Services.AddSingleton<IHomeworldRepository>(new InMemoryHomeworldRepository(seed: true));
+builder.Services.AddSingleton<IJediRepository>(new InMemoryJediRepository(seed: true));
+builder.Services.AddSingleton<ILightSaberRepository>(new InMemoryLightSaberRepository(seed: true));
 
 var app = builder.Build();
 
