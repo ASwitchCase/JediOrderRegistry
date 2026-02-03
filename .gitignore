@@ -1,0 +1,38 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files for .NET / ASP.NET Core projects
+
+# Build Folders
+bin/
+obj/
+
+# Visual Studio / Rider
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Logs and databases
+*.log
+*.db
+
+# Publish output
+publish/
+artifacts/
+
+# Rider
+*.sln.iml
+
+# Dotnet user secrets
+secrets.json
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
