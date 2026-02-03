@@ -17,30 +17,22 @@ namespace JediOrderRegistry.Api.Repositories
         {
             if (!seed) return;
 
-            // Seed mock data
-            _store.Add(new Homeworld
+            // Seed using shared SeedData for consistent cross-references
+            foreach (var hw in SeedData.Homeworlds)
             {
-                Id = Guid.NewGuid(),
-                Name = "Tatooine",
-                System = "Tatoo",
-                Sector = "Arkanis",
-                Population = 200000000,
-                Climate = "Desert",
-                PrimarySpecies = "Human",
-                Gravity = 1.15
-            });
-
-            _store.Add(new Homeworld
-            {
-                Id = Guid.NewGuid(),
-                Name = "Naboo",
-                System = "Naboo",
-                Sector = "Chommell",
-                Population = 5200000000,
-                Climate = "Temperate",
-                PrimarySpecies = "Human",
-                Gravity = 1.07
-            });
+                // add a copy to avoid shared instance issues
+                _store.Add(new Homeworld
+                {
+                    Id = hw.Id,
+                    Name = hw.Name,
+                    System = hw.System,
+                    Sector = hw.Sector,
+                    Population = hw.Population,
+                    Climate = hw.Climate,
+                    PrimarySpecies = hw.PrimarySpecies,
+                    Gravity = hw.Gravity
+                });
+            }
         }
 
         public Task<Homeworld?> GetOneAsync(Guid id)

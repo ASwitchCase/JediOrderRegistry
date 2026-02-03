@@ -17,32 +17,23 @@ namespace JediOrderRegistry.Api.Repositories
         {
             if (!seed) return;
 
-            // Seed mock data
-            _store.Add(new LightSaber
+            // Seed using shared SeedData so OwnerId aligns with seeded Jedi
+            foreach (var ls in SeedData.LightSabers)
             {
-                Id = Guid.NewGuid(),
-                Name = "Anakin's Lightsaber",
-                Color = "Blue",
-                CrystalType = "Kyber",
-                Length = 27.5,
-                Weight = 2100,
-                HiltMaterial = "Durasteel",
-                Manufacturer = "Jedi Temple",
-                YearsInUse = 10
-            });
-
-            _store.Add(new LightSaber
-            {
-                Id = Guid.NewGuid(),
-                Name = "Luke's Lightsaber",
-                Color = "Green",
-                CrystalType = "Kyber",
-                Length = 29.0,
-                Weight = 2000,
-                HiltMaterial = "Durasteel",
-                Manufacturer = "Obi-Wan",
-                YearsInUse = 5
-            });
+                _store.Add(new LightSaber
+                {
+                    Id = ls.Id,
+                    Name = ls.Name,
+                    Color = ls.Color,
+                    CrystalType = ls.CrystalType,
+                    Length = ls.Length,
+                    Weight = ls.Weight,
+                    HiltMaterial = ls.HiltMaterial,
+                    Manufacturer = ls.Manufacturer,
+                    YearsInUse = ls.YearsInUse,
+                    OwnerId = ls.OwnerId
+                });
+            }
         }
 
         public Task<LightSaber?> GetOneAsync(Guid id)

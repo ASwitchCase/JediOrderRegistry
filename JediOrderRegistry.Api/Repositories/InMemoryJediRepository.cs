@@ -17,30 +17,26 @@ namespace JediOrderRegistry.Api.Repositories
         {
             if (!seed) return;
 
-            // Seed mock data
-            _store.Add(new JediModel
+            // Seed using shared SeedData so Homeworld and Lightsaber fields align
+            foreach (var j in SeedData.Jedi)
             {
-                Id = Guid.NewGuid(),
-                Name = "Luke Skywalker",
-                Rank = "Jedi Knight",
-                MidichlorianCount = 14500,
-                Species = "Human",
-                Age = 28,
-                YearsOfService = 10,
-                IsActive = true
-            });
-
-            _store.Add(new JediModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "Obi-Wan Kenobi",
-                Rank = "Master",
-                MidichlorianCount = 13600,
-                Species = "Human",
-                Age = 57,
-                YearsOfService = 35,
-                IsActive = true
-            });
+                _store.Add(new JediModel
+                {
+                    Id = j.Id,
+                    Name = j.Name,
+                    Rank = j.Rank,
+                    MidichlorianCount = j.MidichlorianCount,
+                    Species = j.Species,
+                    Age = j.Age,
+                    YearsOfService = j.YearsOfService,
+                    IsActive = j.IsActive,
+                    Homeworld = j.Homeworld,
+                    Lightsaber = j.Lightsaber,
+                    Master = j.Master,
+                    Padawan = j.Padawan,
+                    CurrentAssignment = j.CurrentAssignment
+                });
+            }
         }
 
         public Task<JediModel?> GetOneAsync(Guid id)
