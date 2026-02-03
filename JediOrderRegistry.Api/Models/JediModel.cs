@@ -10,12 +10,12 @@ namespace JediOrderRegistry.Api.Models
         public Guid? Lightsaber { get; set; }
         public int MidichlorianCount { get; set; }
         public string? Species { get; set; }
-        public string? Homeworld { get; set; }
+        public Guid? Homeworld { get; set; }
         public int Age { get; set; }
         public int YearsOfService { get; set; }
         public Guid? Master { get; set; }
         public Guid? Padawan { get; set; }
-        public Guid? CurrentAssignment { get; set; }
+        public string? CurrentAssignment { get; set; }
         public bool IsActive { get; set; }
 
         public JediModel() { }
